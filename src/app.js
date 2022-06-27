@@ -4,11 +4,13 @@ const helmet = require('helmet')
 const cors = require('cors')
 
 // import middlewares
-const notFound = require('./middleware/notFound')
+const notFound = require('./middlewares/notFound')
 
 const app = express()
-// Setup logging, cors, security headers and body parser
+
+// Setup logging, .env, cors, security headers and body parser
 app.use(morgan(':method :url :status :response-time ms'))
+require('dotenv').config()
 app.use(cors())
 app.use(helmet())
 app.use(express.json())
