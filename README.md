@@ -3,6 +3,7 @@ A simple user management API written using javascript.
 
 ## Structure
 - Stack: Nodejs and expressjs
+- Testing: jest and supertest
 - Database: MongoDB (Atlas)
 - Other tools:
 	- `nodemon` for dev server
@@ -10,6 +11,7 @@ A simple user management API written using javascript.
 	- `helmet` to set security headers
 	- `dotenv` to manage environment variables
 	- `cors` to set cross site headers
+	- `prettier` to format code
 
 ## How to setup
 - Make sure to have nodejs and git installed
