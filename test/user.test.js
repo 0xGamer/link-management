@@ -26,6 +26,13 @@ describe("POST /users", () => {
       password: "jsonrocks",
     });
     expect(resp.status).toEqual(201);
+    expect(res.body).toEqual(
+      expect.objectContaining({
+        name: "jason",
+        email: "jason@json.com",
+        password: "jsonrocks",
+      })
+    );
   });
 });
 
@@ -46,16 +53,23 @@ describe("PATCH /users/:id", () => {
   it("should update a user", async () => {
     let resp = await request(app).patch("/users/testid").send({
       name: "john",
-      email: "john@john.com"
+      email: "john@john.com",
     });
 
+    expect(resp.body).toEqual(
+      expect.objectContaining({
+        name: "john",
+        email: "john@john.com",
+        password: "jsonrocks",
+      })
+    );
     expect(resp.status).toEqual(204);
-  })
-})
+  });
+});
 
 describe("DELETE /users/:id", () => {
   it("should delete a user", async () => {
-    let resp = await request(app).delete("/users/testid")
+    let resp = await request(app).delete("/users/testid");
     expect(resp.status).toEqual(204);
-  })
-})
+  });
+});
