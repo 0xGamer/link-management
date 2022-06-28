@@ -25,5 +25,5 @@ GET 	/users 		[Gets all the users]
 GET 	/users/id 	[Gets a single user with the specified id]
 POST 	/users 		[Adds a new user] { name: string, email: string, password: string }
 PATCH 	/users 		[Updates existing user with the specified id] { name: string, email: string, password: string } // data can be partial
-DELETE 	/users/id    	[Deletes the user with the specified id]
+DELETE 	/users/id    	[Deletes user with the specified id]
 ```

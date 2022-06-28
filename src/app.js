@@ -3,6 +3,8 @@ const morgan  = require('morgan')
 const helmet = require('helmet')
 const cors = require('cors')
 
+const users = require('./routes/user.router')
+
 // import middlewares
 const notFound = require('./middlewares/notFound')
 const handleError = require('./middlewares/handleErrors')
@@ -21,6 +23,9 @@ app.get('/', (req, res) => {
     message: 'Hello From Express'
   })
 })
+
+// attatch the user router
+app.use('/users', users)
 
 // When no above urls match
 app.use(notFound)
