@@ -5,6 +5,7 @@ const cors = require('cors')
 
 // import middlewares
 const notFound = require('./middlewares/notFound')
+const handleError = require('./middlewares/handleErrors')
 
 const app = express()
 
@@ -23,5 +24,8 @@ app.get('/', (req, res) => {
 
 // When no above urls match
 app.use(notFound)
+
+// Error handler
+app.use(handleError)
 
 module.exports = app
