@@ -16,6 +16,9 @@ A simple user management API written using javascript. The client is written in 
 The client resides in the `/client` folder
 The API is deployed using heroku on https://node-api-xyz.herokuapp.com
 
+## Demo Video
+[![Demo Video](https://img.youtube.com/vi/jSceqqxiCVU/0.jpg)](https://www.youtube.com/watch?v=jSceqqxiCVU)
+
 
 ## How to setup
 - Make sure to have nodejs and git installed
