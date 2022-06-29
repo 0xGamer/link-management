@@ -36,7 +36,7 @@ exports.addUser = async (req, res, next) => {
   } catch (e) {
     // catches validation and schema errors and sends to err handler
     res.statusCode = 400;
-    console.log(e)
+    console.log(e);
     next(e);
   }
 };

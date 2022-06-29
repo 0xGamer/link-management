@@ -1,30 +1,33 @@
 const request = require("supertest");
 const app = require("../src/app");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-let ID = ""
+let ID = "";
 
 beforeAll(async () => {
   mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("connected to DB");
-  })
-  .catch((e) => {
-    console.log("Error connecting to DB");
-  });
-})
+    .connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("connected to DB");
+    })
+    .catch((e) => {
+      console.log("Error connecting to DB");
+    });
+});
 
 afterAll(async () => {
-   mongoose.connection.close().then(() => {
-    console.log('closed connection')
-   }).catch(e => {
-    console.log('err closing connection')
-   })
-})
+  mongoose.connection
+    .close()
+    .then(() => {
+      console.log("closed connection");
+    })
+    .catch((e) => {
+      console.log("err closing connection");
+    });
+});
 
 describe("GET /users", () => {
   it("should get all users", async () => {
@@ -38,7 +41,7 @@ describe("GET /users", () => {
           email: expect.any(String),
           password: expect.any(String),
           _id: expect.any(String),
-          __v: expect.any(Number)
+          __v: expect.any(Number),
         }),
       ])
     );
@@ -53,14 +56,14 @@ describe("POST /users", () => {
       password: "jsonrocks",
     });
     expect(resp.status).toEqual(201);
-    ID = resp.body._id
+    ID = resp.body._id;
     expect(resp.body).toEqual(
       expect.objectContaining({
         name: "jason",
         email: "jason@jason.com",
         password: "jsonrocks",
         _id: expect.any(String),
-        __v: expect.any(Number)
+        __v: expect.any(Number),
       })
     );
   });
@@ -68,14 +71,14 @@ describe("POST /users", () => {
 
 describe("GET /users/:id", () => {
   it("should return a single user", async () => {
-    let resp = await request(app).get("/users/"+ID); // to be replaced
+    let resp = await request(app).get("/users/" + ID); // to be replaced
     expect(resp.body).toEqual(
       expect.objectContaining({
         name: expect.any(String),
         email: expect.any(String),
         password: expect.any(String),
         _id: expect.any(String),
-        __v: expect.any(Number)
+        __v: expect.any(Number),
       })
     );
   });
@@ -83,10 +86,12 @@ describe("GET /users/:id", () => {
 
 describe("PATCH /users/:id", () => {
   it("should update a user", async () => {
-    let resp = await request(app).patch("/users/"+ID).send({
-      name: "john",
-      email: "john@john.com",
-    });
+    let resp = await request(app)
+      .patch("/users/" + ID)
+      .send({
+        name: "john",
+        email: "john@john.com",
+      });
     expect(resp.status).toEqual(201);
     expect(resp.body).toEqual(
       expect.objectContaining({
@@ -94,7 +99,7 @@ describe("PATCH /users/:id", () => {
         email: "john@john.com",
         password: "jsonrocks",
         _id: expect.any(String),
-        __v: expect.any(Number)
+        __v: expect.any(Number),
       })
     );
   });
@@ -102,7 +107,7 @@ describe("PATCH /users/:id", () => {
 
 describe("DELETE /users/:id", () => {
   it("should delete a user", async () => {
-    let resp = await request(app).delete("/users/"+ID);
+    let resp = await request(app).delete("/users/" + ID);
     expect(resp.status).toEqual(201);
   });
 });
