@@ -9,7 +9,7 @@ const Service = {
   addUser: async function (data) {
     return axios.post(URL, data);
   },
-  
+
   updateUser: async function (id, data) {
     return axios.patch(`${URL}/${id}`, data);
   },

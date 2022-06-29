@@ -126,7 +126,6 @@ describe("POST /users [Invalid Data]", () => {
   });
 });
 
-
 describe("GET /users/:id [Invalid ID]", () => {
   it("should return 404", async () => {
     let resp = await request(app).get("/users/invalidxyz");
@@ -143,12 +142,10 @@ describe("DELETE /users/:id [Invalid ID]", () => {
 
 describe("PATCH /users/:id [Invalid ID]", () => {
   it("should return 404", async () => {
-    let resp = await request(app)
-      .patch("/users/test")
-      .send({
-        name: "john",
-        email: "john@john.com",
-      });
+    let resp = await request(app).patch("/users/test").send({
+      name: "john",
+      email: "john@john.com",
+    });
     expect(resp.status).toEqual(404);
   });
 });
