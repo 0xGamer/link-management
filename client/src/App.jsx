@@ -95,7 +95,7 @@ function App() {
           required
         />
         <br />
-        {setUpdateActive ? 
+        {updateActive ? 
 
         <Button
           onClick={updateUser}
