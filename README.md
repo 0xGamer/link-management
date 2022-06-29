@@ -1,8 +1,8 @@
 # Node User API
-A simple user management API written using javascript.
+A simple user management API written using javascript. The client is written in react and is deployed to https://node-user-api.vercel.app
 
 ## Structure
-- Stack: Nodejs and expressjs
+- Stack: Backend: Nodejs and expressjs, Front End: Reactjs with vite
 - Testing: jest and supertest
 - Database: MongoDB (Atlas)
 - Other tools:
@@ -12,6 +12,9 @@ A simple user management API written using javascript.
 	- `dotenv` to manage environment variables
 	- `cors` to set cross site headers
 	- `prettier` to format code
+
+The client resides in the `/client` folder
+
 
 ## How to setup
 - Make sure to have nodejs and git installed
