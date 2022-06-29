@@ -71,7 +71,8 @@ describe("POST /users", () => {
 
 describe("GET /users/:id", () => {
   it("should return a single user", async () => {
-    let resp = await request(app).get("/users/" + ID); // to be replaced
+    let resp = await request(app).get("/users/" + ID);
+    expect(resp.status).toEqual(200);
     expect(resp.body).toEqual(
       expect.objectContaining({
         name: expect.any(String),
@@ -109,5 +110,45 @@ describe("DELETE /users/:id", () => {
   it("should delete a user", async () => {
     let resp = await request(app).delete("/users/" + ID);
     expect(resp.status).toEqual(201);
+  });
+});
+
+// Tests to ensure Validation
+
+describe("POST /users [Invalid Data]", () => {
+  it("should return 400", async () => {
+    let resp = await request(app).post("/users").send({
+      name: "jason",
+      email: "jason@jason.com",
+      // no password provided
+    });
+    expect(resp.status).toEqual(400);
+  });
+});
+
+
+describe("GET /users/:id [Invalid ID]", () => {
+  it("should return 404", async () => {
+    let resp = await request(app).get("/users/invalidxyz");
+    expect(resp.status).toEqual(404);
+  });
+});
+
+describe("DELETE /users/:id [Invalid ID]", () => {
+  it("should return 404", async () => {
+    let resp = await request(app).delete("/users/testxyz");
+    expect(resp.status).toEqual(404);
+  });
+});
+
+describe("PATCH /users/:id [Invalid ID]", () => {
+  it("should return 404", async () => {
+    let resp = await request(app)
+      .patch("/users/test")
+      .send({
+        name: "john",
+        email: "john@john.com",
+      });
+    expect(resp.status).toEqual(404);
   });
 });
