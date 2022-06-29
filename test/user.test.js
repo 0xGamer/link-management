@@ -12,6 +12,7 @@ describe("GET /users", () => {
           name: expect.any(String),
           email: expect.any(String),
           password: expect.any(String),
+          _id: expect.any(String),
         }),
       ])
     );
@@ -31,6 +32,7 @@ describe("POST /users", () => {
         name: "jason",
         email: "jason@json.com",
         password: "jsonrocks",
+        _id: expect.any(String),
       })
     );
   });
@@ -44,6 +46,7 @@ describe("GET /users/:id", () => {
         name: expect.any(String),
         email: expect.any(String),
         password: expect.any(String),
+        _id: expect.any(String),
       })
     );
   });
@@ -55,15 +58,15 @@ describe("PATCH /users/:id", () => {
       name: "john",
       email: "john@john.com",
     });
-
+    expect(resp.status).toEqual(204);
     expect(resp.body).toEqual(
       expect.objectContaining({
         name: "john",
         email: "john@john.com",
         password: "jsonrocks",
+        _id: expect.any(String),
       })
     );
-    expect(resp.status).toEqual(204);
   });
 });
 
