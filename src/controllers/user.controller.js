@@ -1,6 +1,5 @@
 const User = require('../models/user.model')
 
-
 // Gets all the users
 exports.getAllUsers = async (req, res, next) => {
   try { 
@@ -14,10 +13,6 @@ exports.getAllUsers = async (req, res, next) => {
 
 // Gets a single user with the specified :id
 exports.getUser = async (req, res, next) => {
-  if (!req.params.id) {
-    res.statusCode = 400
-    next(new Error("Please Specify the user id"))
-  }
   try {
     let user = await User.findById(req.params.id)
     res.status(200).json(user)
@@ -37,7 +32,6 @@ exports.addUser = async (req, res, next) => {
 
   try {
     await user.save()
-    console.log(user)
     res.status(201).json(user)
   } catch (e) {
     // catches validation and schema errors and sends to err handler
@@ -47,11 +41,27 @@ exports.addUser = async (req, res, next) => {
 };
 
 // Updates existing user with the specified :id
-exports.updateUser = (req, res, next) => {
-  res.send("test");
+exports.updateUser = async (req, res, next) => {
+    try {
+      let newUser = await User.findOneAndUpdate(
+        {_id: req.params.id}, {$set: req.body}, { new: true}
+      )
+      res.status(201).json(newUser)
+    } catch (e) {
+    res.statusCode = 404
+    next(new Error(`User not found: ${req.params.id}`))
+  }
 };
 
 // Deletes user with the specified :id
-exports.deleteUser = (req, res, next) => {
-  res.send("test");
+exports.deleteUser = async (req, res, next) => {
+    try {
+      await User.deleteOne({_id: req.params.id})
+      res.status(201).json({
+        message: "User deleted successfully"
+      }) 
+    } catch (e) {
+      res.statusCode = 404
+      next(new Error(`User not found: ${req.params.id}`))
+    }
 };
