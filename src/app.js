@@ -11,6 +11,7 @@ const handleErrors = require("./middlewares/handleErrors");
 
 const app = express();
 
+
 // Setup logging, .env, cors, security headers and body parser
 app.use(morgan(":method :url :status :response-time ms"));
 require("dotenv").config();

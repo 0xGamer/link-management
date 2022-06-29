@@ -1,3 +1,6 @@
+const User = require('../models/user.model')
+
+
 // Gets all the users
 exports.getAllUsers = (req, res, next) => {
   res.send("test");
