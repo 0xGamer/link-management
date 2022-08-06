@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 
-const users = require("./routes/user.router");
+const links = require("./routes/link.router");
 
 // import middlewares
 const notFound = require("./middlewares/notFound");
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 // attatch the user router
-app.use("/users", users);
+app.use("/links", links);
 
 // When no above urls match
 app.use(notFound);

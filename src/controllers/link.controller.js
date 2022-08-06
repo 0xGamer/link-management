@@ -1,10 +1,10 @@
-const User = require("../models/user.model");
+const Link = require("../models/link.model");
 
 // Gets all the users
-exports.getAllUsers = async (req, res, next) => {
+exports.getAllLinks = async (req, res, next) => {
   try {
-    let users = await User.find();
-    res.status(200).json(users);
+    let links = await Link.find();
+    res.status(200).json(links);
   } catch (e) {
     res.statusCode = 404;
     next(e);
@@ -12,27 +12,27 @@ exports.getAllUsers = async (req, res, next) => {
 };
 
 // Gets a single user with the specified :id
-exports.getUser = async (req, res, next) => {
+exports.getLink = async (req, res, next) => {
   try {
-    let user = await User.findById(req.params.id);
+    let link = await Link.findById(req.params.id);
     res.status(200).json(user);
   } catch (e) {
     res.statusCode = 404;
-    next(new Error(`User not found: ${req.params.id}`));
+    next(new Error(`Link not found: ${req.params.id}`));
   }
 };
 
 // Adds a new user
-exports.addUser = async (req, res, next) => {
-  let user = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
+exports.addLink = async (req, res, next) => {
+  let link = new Link({
+    link: req.body.link,
+    file: req.body.file,
+    form: req.body.form,
   });
 
   try {
     await user.save();
-    res.status(201).json(user);
+    res.status(201).json(link);
   } catch (e) {
     // catches validation and schema errors and sends to err handler
     res.statusCode = 400;
@@ -42,9 +42,9 @@ exports.addUser = async (req, res, next) => {
 };
 
 // Updates existing user with the specified :id
-exports.updateUser = async (req, res, next) => {
+exports.updateLink = async (req, res, next) => {
   try {
-    let newUser = await User.findOneAndUpdate(
+    let newLink = await Link.findOneAndUpdate(
       { _id: req.params.id },
       { $set: req.body },
       { new: true }
@@ -52,19 +52,19 @@ exports.updateUser = async (req, res, next) => {
     res.status(201).json(newUser);
   } catch (e) {
     res.statusCode = 404;
-    next(new Error(`User not found: ${req.params.id}`));
+    next(new Error(`Link not found: ${req.params.id}`));
   }
 };
 
 // Deletes user with the specified :id
-exports.deleteUser = async (req, res, next) => {
+exports.deleteLink = async (req, res, next) => {
   try {
     await User.deleteOne({ _id: req.params.id });
     res.status(201).json({
-      message: "User deleted successfully",
+      message: "Link deleted successfully",
     });
   } catch (e) {
     res.statusCode = 404;
-    next(new Error(`User not found: ${req.params.id}`));
+    next(new Error(`Link not found: ${req.params.id}`));
   }
 };
