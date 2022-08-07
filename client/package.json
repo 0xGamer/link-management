@@ -9,7 +9,10 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,json}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@mantine/core": "^5.0.3",
     "@mantine/form": "^4.2.11",
+    "@mantine/hooks": "^5.0.3",
     "@mantine/notifications": "^4.2.11",
     "axios": "^0.27.2",
     "react": "^18.0.0",
