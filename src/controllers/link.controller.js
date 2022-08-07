@@ -24,15 +24,15 @@ exports.getLink = async (req, res, next) => {
 
 // Adds a new user
 exports.addLink = async (req, res, next) => {
-  let newlink = new Link({
+  let link = new Link({
     link: req.body.link,
     file: req.body.file,
     form: req.body.form,
   });
 
   try {
-    await user.save();
-    res.status(201).json(newlink);
+    await link.save();
+    res.status(201).json(link);
   } catch (e) {
     // catches validation and schema errors and sends to err handler
     res.statusCode = 400;
@@ -59,7 +59,7 @@ exports.updateLink = async (req, res, next) => {
 // Deletes user with the specified :id
 exports.deleteLink = async (req, res, next) => {
   try {
-    await User.deleteOne({ _id: req.params.id });
+    await Link.deleteOne({ _id: req.params.id });
     res.status(201).json({
       message: "Link deleted successfully",
     });
