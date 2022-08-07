@@ -15,7 +15,7 @@ exports.getAllLinks = async (req, res, next) => {
 exports.getLink = async (req, res, next) => {
   try {
     let link = await Link.findById(req.params.id);
-    res.status(200).json(user);
+    res.status(200).json(link);
   } catch (e) {
     res.statusCode = 404;
     next(new Error(`Link not found: ${req.params.id}`));
@@ -24,7 +24,7 @@ exports.getLink = async (req, res, next) => {
 
 // Adds a new user
 exports.addLink = async (req, res, next) => {
-  let link = new Link({
+  let newlink = new Link({
     link: req.body.link,
     file: req.body.file,
     form: req.body.form,
@@ -32,7 +32,7 @@ exports.addLink = async (req, res, next) => {
 
   try {
     await user.save();
-    res.status(201).json(link);
+    res.status(201).json(newlink);
   } catch (e) {
     // catches validation and schema errors and sends to err handler
     res.statusCode = 400;
@@ -49,7 +49,7 @@ exports.updateLink = async (req, res, next) => {
       { $set: req.body },
       { new: true }
     );
-    res.status(201).json(newUser);
+    res.status(201).json(newLink);
   } catch (e) {
     res.statusCode = 404;
     next(new Error(`Link not found: ${req.params.id}`));
