@@ -124,8 +124,8 @@ function App() {
               return (
                 <tr key={element._id.toString()}>
                   <td>{element.linkurl}</td>
-                  <td>{element.file}</td>
-                  <td>{element.form}</td>
+                  <td><Checkbox checked={element.file}  color="dark"  /></td>
+                  <td><Checkbox checked={element.form}  color="dark"  /></td>
                   <td>
                     <Button color="red" onClick={() => deleteLink(element._id)}>
                       Delete
