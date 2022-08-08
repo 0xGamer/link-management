@@ -10,8 +10,8 @@ function App() {
   }, []);
 
   let [linkurl, setLinkurl] = useState();
-  let [file, setFile] = useState();
-  let [form, setForm] = useState();
+  let [file, setFile] = useState(false);
+  let [form, setForm] = useState(false);
 
   let [updateActive, setUpdateActive] = useState(false);
   let [updateId, setUpdateId] = useState()
@@ -29,7 +29,7 @@ function App() {
   const addLink = async () => {
     try {
       let link = { linkurl, file, form };
-      await console.log(linkurl)
+      await console.log(link)
       await Service.addLink(link);
       setFile(false);
       setLinkurl("");
@@ -123,7 +123,7 @@ function App() {
             {links.map((element) => {
               return (
                 <tr key={element._id.toString()}>
-                  <td>{element.linkurl}</td>
+                  <td>{element.linkurl}</td>  
                   <td><Checkbox checked={element.file}  color="dark"  /></td>
                   <td><Checkbox checked={element.form}  color="dark"  /></td>
                   <td>
