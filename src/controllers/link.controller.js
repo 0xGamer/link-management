@@ -25,7 +25,7 @@ exports.getLink = async (req, res, next) => {
 // Adds a new user
 exports.addLink = async (req, res, next) => {
   let link = new Link({
-    link: req.body.link,
+    link: req.body.linkurl,
     file: req.body.file,
     form: req.body.form,
   });
