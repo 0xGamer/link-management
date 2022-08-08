@@ -2,11 +2,10 @@ const mongoose = require("mongoose");
 
 const linkSchema = new mongoose.Schema(
   {
-    link: {
+    linkurl: {
       type: String,
       required: [true, "Link is required"],
-      unique: true,
-    },
+        },
 
     file: {
       type: Boolean,
