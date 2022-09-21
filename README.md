@@ -1,5 +1,5 @@
 # Link Management System
-A simple user Link API written using javascript.
+A simple Link Management API written using javascript.
 
 ## Structure
 - Stack: Backend: Nodejs and expressjs, Front End: Reactjs with vite
