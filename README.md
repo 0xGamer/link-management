@@ -1,4 +1,4 @@
-# Link manager
+# Link Management System
 A simple user Link API written using javascript.
 
 ## Structure
