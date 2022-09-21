@@ -1,4 +1,4 @@
-const URL = "https://school-api-billabong.herokuapp.com/links";
+const URL = "https://lilac-snail-hem.cyclic.app/links";
 import axios from "axios";
 
 const Service = {
